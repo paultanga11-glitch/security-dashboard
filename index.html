@@ -15,7 +15,6 @@
         <th>Timestamp</th>
         <th>Serial Number</th>
         <th>Note</th>
-        <th>Image</th>
       </tr>
     </thead>
     <tbody>
@@ -41,7 +40,6 @@ async function loadData() {
         <td>${row.timestamp}</td>
         <td>${row.serial}</td>
         <td>${row.note}</td>
-        <td>${row.image ? '<img src="'+row.image+'" width="80">' : ''}</td>
       `;
       tbody.appendChild(tr);
     });
@@ -53,7 +51,7 @@ async function loadData() {
 // Load immediately
 loadData();
 
-// Optional: refresh every 5 seconds
+// Optional: refresh every 5 seconds for demo
 setInterval(loadData, 5000);
 </script>
 </body>
