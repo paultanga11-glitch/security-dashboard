@@ -28,22 +28,26 @@
 const API_URL = "https://script.google.com/macros/s/AKfycbxJcVrdVzaRXnv3A8-YB4Y18Wuz0rjUxw-ykI1JkHFeiSeHkg32sFrnqgSWxurGfH9I/exec"; // replace with your Apps Script Web App URL
 
 async function loadData() {
-  const response = await fetch(API_URL);
-  const data = await response.json();
-  
-  const tbody = document.querySelector("#dashboard-table tbody");
-  tbody.innerHTML = ""; // clear old rows
+  try {
+    const response = await fetch(API_URL);
+    const data = await response.json();
 
-  data.forEach(row => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
-      <td>${row["Timestamp"]}</td>
-      <td>${row["Serial Number"]}</td>
-      <td>${row["Note"]}</td>
-      <td>${row["Image URL"] ? '<img src="'+row["Image URL"]+'" width="80">' : ''}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+    const tbody = document.querySelector("#dashboard-table tbody");
+    tbody.innerHTML = ""; // clear old rows
+
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.timestamp}</td>
+        <td>${row.serial}</td>
+        <td>${row.note}</td>
+        <td>${row.image ? '<img src="'+row.image+'" width="80">' : ''}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  } catch (err) {
+    console.error("Error loading data:", err);
+  }
 }
 
 // Load immediately
