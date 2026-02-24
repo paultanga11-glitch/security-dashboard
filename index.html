@@ -35,6 +35,7 @@ async function loadData() {
     tbody.innerHTML = ""; // clear old rows
 
     data.forEach(row => {
+      // Only include timestamp, serial, and note
       const tr = document.createElement("tr");
       tr.innerHTML = `
         <td>${row.timestamp}</td>
@@ -51,7 +52,7 @@ async function loadData() {
 // Load immediately
 loadData();
 
-// Optional: refresh every 5 seconds for demo
+// Refresh every 5 seconds for demo
 setInterval(loadData, 5000);
 </script>
 </body>
